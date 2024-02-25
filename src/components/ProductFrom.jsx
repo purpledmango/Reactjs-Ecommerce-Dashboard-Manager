@@ -98,6 +98,27 @@ const ProductForm = ({ showProductForm, setShowProductForm, existingData }) => {
     const handleClose = () => {
         setSavedProduct(null);
         setShowProductForm(!showProductForm);
+        setNewProduct({
+            name: '',
+            price: 0,
+            stock: 0,
+            description: '',
+            category: "null",
+            tag: "null",
+            active: false,
+            productImgs: []
+        })
+
+        setSavedProduct({
+            name: '',
+            price: 0,
+            stock: 0,
+            description: '',
+            category: "null",
+            tag: "null",
+            active: false,
+            productImgs: []
+        })
     };
 
     const toggleProductStatus = () => {

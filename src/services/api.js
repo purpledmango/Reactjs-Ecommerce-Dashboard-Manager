@@ -3,7 +3,7 @@ import axios from 'axios';
 // Create an instance of axios with a custom configuration
 const api = axios.create({
 
-  baseURL: 'https://api.theneighbourhoood.com/',
+  baseURL: 'https://api.theneighbourhoood.com',
 
   // headers: {
   //     'Content-Type': 'application/json',
