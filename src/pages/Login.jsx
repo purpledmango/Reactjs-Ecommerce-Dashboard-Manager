@@ -6,7 +6,7 @@ import Spinner from "../components/Spinner";  // Import a spinner component if a
 
 const Login = () => {
     document.title = "Login - The NeighbourHOOOD Admin Dashboard";
-    const { loginAction } = useUser();
+    const { user, loginAction } = useUser();
     const [message, setMessage] = useState(null)
     const [credentials, setCredentials] = useState({
         email: '',
@@ -53,7 +53,7 @@ const Login = () => {
 
     return (
         <>
-            {!isAuthenticated ? (<Spinner className="text-4xl" />) : (
+            {!user ? (<Spinner className="text-4xl" />) : (
                 <div className="w-full h-screen bg-background-color flex flex-col justify-center items-center absolute inset-0 transform -translate-y-0">
                     <form
                         onSubmit={handleLogin}
