@@ -52,43 +52,41 @@ const Login = () => {
     ;
 
     return (
-        <>
-            {!user ? (<Spinner className="text-4xl" />) : (
-                <div className="w-full h-screen bg-background-color flex flex-col justify-center items-center absolute inset-0 transform -translate-y-0">
-                    <form
-                        onSubmit={handleLogin}
-                        className="flex text-accent-color font-base flex-col w-full md:w-[50%] items-center justify-center mx-auto bg-primary-color px-6  py-12 gap-12 rounded-3xl"
-                    >
-                        <h2 className="text-3xl font-light">Login</h2>
-                        <input
-                            className="p-4 rounded-2xl text-xl "
-                            placeholder="email"
-                            type="email"
-                            name="email"
-                            value={credentials.email}
-                            onChange={handleChange}
-                        />
-                        <input
-                            className="p-4 rounded-2xl text-xl capitalize"
-                            placeholder="password"
-                            type="password"
-                            name="password"
-                            value={credentials.password}
-                            onChange={handleChange}
-                        />
 
-                        {!loading ? (<button
-                            type="submit"
-                            className=" text-lg hover:scale-105 transition-all duration-300 bg-accent-color px-4 py-2 rounded-2xl text-background-color hover:font-semibold"
-                        >
-                            Log in
-                        </button>) : <Spinner />} {/* Show a spinner or loading state */}
-                    </form>
-                    <ToastContainer />
-                </div>
-            )
-            }
-        </>);
+        <div className="w-full h-screen bg-background-color flex flex-col justify-center items-center absolute inset-0 transform -translate-y-0">
+            <form
+                onSubmit={handleLogin}
+                className="flex text-accent-color font-base flex-col w-full md:w-[50%] items-center justify-center mx-auto bg-primary-color px-6  py-12 gap-12 rounded-3xl"
+            >
+                <h2 className="text-3xl font-light">Login</h2>
+                <input
+                    className="p-4 rounded-2xl text-xl "
+                    placeholder="email"
+                    type="email"
+                    name="email"
+                    value={credentials.email}
+                    onChange={handleChange}
+                />
+                <input
+                    className="p-4 rounded-2xl text-xl capitalize"
+                    placeholder="password"
+                    type="password"
+                    name="password"
+                    value={credentials.password}
+                    onChange={handleChange}
+                />
+
+                {!loading ? (<button
+                    type="submit"
+                    className=" text-lg hover:scale-105 transition-all duration-300 bg-accent-color px-4 py-2 rounded-2xl text-background-color hover:font-semibold"
+                >
+                    Log in
+                </button>) : <Spinner />} {/* Show a spinner or loading state */}
+            </form>
+            <ToastContainer />
+        </div>
+    )
+        ;
 };
 
 export default Login;
