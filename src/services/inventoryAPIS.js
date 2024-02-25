@@ -102,3 +102,22 @@ export const activeProductsKPI = async () => {
         console.error("Error with API", error)
     }
 }
+
+export const addImageToProduct = async (pid, image) => {
+    console.log("parsed images", image)
+    try {
+        const formData = new FormData();
+        formData.append('imgFile', image);
+
+        const response = await api.patch(`/product/update-image/${pid}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        });
+
+        return response.data;
+    } catch (error) {
+        console.error("Error with API", error);
+        throw error; // Re-throw the error to handle it outside
+    }
+}

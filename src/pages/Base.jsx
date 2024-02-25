@@ -5,7 +5,7 @@ import Orders from "./Orders";
 import Inventory from "./Inventory";
 import Users from "./Users";
 import Nav from "../components/Nav";
-import Hud from "../components/Hud"
+import Hud from "../components/Hud";
 import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
 import Login from "./Login";
@@ -13,42 +13,35 @@ import { useUser } from "../contexts/UserContext";
 
 const Base = () => {
     const [sideBarVisibility, setSideBarVisibility] = useState(false);
-    const { isAuthenticated } = useUser();
-    const navigate = useNavigate()
+    const { user } = useUser();
+    const navigate = useNavigate();
 
     useEffect(() => {
-
-
-    }, [isAuthenticated, navigate]);
-
-
+        // Any side effect code related to user state can go here
+    }, [user]);
 
     return (
         <>
-            <div className="w-screen h-full">
+            <div className="w-screen h-full overflow-x-hidden"> {/* Apply overflow-x-hidden here */}
                 <Nav />
 
                 <div className={`w-full h-full grid grid-cols-12`}>
-                    <div className={` h-full ${sideBarVisibility ? "col-span-2 " : "hidden"}`}>
+                    <div className={`h-full ${sideBarVisibility ? "col-span-2" : "hidden"}`}>
                         <Sidebar />
                     </div>
 
-                    <div className={` ${sideBarVisibility ? "col-span-12 lg:col-span-10" : "col-span-12"} h-auto bg-background-color text-white`}>
-                        <Hud visible={sideBarVisibility} setVisible={setSideBarVisibility} />
+                    <div className={`${sideBarVisibility ? "col-span-12 lg:col-span-10" : "col-span-12"} h-auto bg-background-color text-white`}>
+                        <Hud visible={sideBarVisibility} setVisible={setSideBarVisibility} user={user} />
                         <Routes>
-
-                            <>
-                                <Route path="/" element={<Dashboard />} />
-                                <Route path="/inventory" element={<Inventory />} />
-                                <Route path="/users" element={<Users />} />
-                                <Route path="/orders" element={<Orders />} />
-                                <Route path="/login" element={<Login />} />
-                            </>
-
-
+                            <Route path="/" element={<Dashboard />} />
+                            <Route path="/inventory" element={<Inventory />} />
+                            <Route path="/users" element={<Users />} />
+                            <Route path="/orders" element={<Orders />} />
+                            <Route path="/login" element={<Login />} />
                         </Routes>
                     </div>
                 </div>
+
                 <div className="w-full h-full">
                     <Footer />
                 </div>

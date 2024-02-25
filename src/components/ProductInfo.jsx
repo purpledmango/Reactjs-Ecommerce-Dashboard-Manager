@@ -90,7 +90,7 @@ const ProductInfo = ({ product }) => {
                     <h6 className='pr-2'><span className='font-bold'>Category </span> {product.category}</h6>
                 </div>
                 <div>
-                    <img alt='thumbnail' src={"http://localhost:3000/" + product.thumbnail.path}></img>
+                    <img alt='thumbnail' src={"http://localhost:3000/" + product.productImages[0].path}></img>
                 </div>
             </div>
             {isEditing ? (

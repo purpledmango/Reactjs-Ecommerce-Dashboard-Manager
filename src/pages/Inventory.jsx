@@ -68,7 +68,6 @@ const Inventory = () => {
         { pid: "49ss8", name: 'Bell Bootoms', stock: 5665, sold: 652 },
 
     ];
-    console.log("Inventory Tag data", tagData)
     const fetchRecentlyAddedData = async () => {
         try {
             const resposne = await recentlyAddedProductsAPI()
@@ -116,12 +115,6 @@ const Inventory = () => {
                     <KPI kpiName={'Active Products'} kpiData={activeProdKPI ? activeProdKPI : <Spinner />} />
                 </div>
 
-                {/* <div className='w-full'>
-                    <GraphKPI name={'In Stock'} data={2560} />
-                </div>
-                <div className='w-full'>
-                    <GraphKPI name={'Out of Stock'} data={2560} />
-                </div> */}
 
             </div>
             <div className='grid grid-cols-12 py-6 gap-4'>
@@ -153,7 +146,7 @@ const Inventory = () => {
                 </div>
 
                 <div className={`mt-4 w-full overflow-hidden transform transition-all duration-500 ${showProductForm ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 mt-0 h-0"}`}>
-                    <ProductFrom showProductForm={showProductForm} setShowProductForm={setShowProductForm} categoryData={categoryData} tagData={tagData} />
+                    <ProductFrom showProductForm={showProductForm} setShowProductForm={setShowProductForm} />
                 </div>
 
                 <div className='w-full'>

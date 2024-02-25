@@ -8,9 +8,9 @@ import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 
 
-const Hud = ({ visible, setVisible }) => {
+const Hud = ({ visible, setVisible, user }) => {
+    const { logoutAction } = useUser()
 
-    const { user, logoutAction } = useUser()
     const [showLogout, setShowLogout] = useState(false)
 
 
@@ -18,11 +18,13 @@ const Hud = ({ visible, setVisible }) => {
         try {
             const response = logoutAction();
             Cookies.remove("connect.sid")
-            response && toast.success("Logged Out")
+            toast.success("Logged Out")
         } catch (error) {
             console.log(error)
         }
+
     }
+    console.log("Hud user data", user)
 
     return (
         <div className="w-full md:h-24 bg-background-color text-white px-6">
@@ -50,23 +52,29 @@ const Hud = ({ visible, setVisible }) => {
                 </div>
                 {showLogout && (
                     <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{
-                            type: "spring",
-                            stiffness: 260,
-                            damping: 20
-                        }}
-                        className="h-48 w-48 absolute top-0 right-0 bg-primary-color/80 p-4 rounded-xl shadow-3xl"
+                        initial={{ x: 65 }}
+                        animate={{ x: 0 }}
+                        exit={{ x: 65 }} // Slide out to the right on exit
+                        // transition={{
+                        //     type: "spring",
+                        //     stiffness: 260,
+                        //     damping: 20
+                        // }}
+                        className="h-48 w-48 absolute top-0 right-0 "
                     >
-                        <div className="relative">
-                            <div className="absolute right-0 text-2xl"><PiX /></div>
+                        <div className=" flex flex-col jusitfy-evenly items-start gap-4 bg-primary-color/80 p-4 rounded-xl shadow-3xl shadow-green-400 ">
+
+
+                            <div className="  text-3xl" onClick={() => setShowLogout(!showLogout)} > <PiXCircleDuotone /></div>
                             <button className="flex items-center justify-center px-4 py-2 bg-rose-600 rounded-xl" onClick={handleLogout}><PiPencilSlashDuotone />Logout</button>
+
+
+
                         </div>
                     </motion.div>
                 )}
             </div>
-        </div>
+        </div >
     );
 }
 
