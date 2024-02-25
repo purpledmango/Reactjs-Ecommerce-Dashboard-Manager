@@ -7,7 +7,7 @@ export const UserContext = createContext();
 export const useUser = () => {
     const [user, setUser] = useState(null);
     const [uid, setUid] = useState(localStorage.getItem("uid") || null);
-    const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("authenticated") === "true" || false); // Initialize token from localStorage
+    const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("authenticated") === "true" || localStorage.setItem("authenticated", false)); // Initialize token from localStorage
 
     const navigate = useNavigate();
 
